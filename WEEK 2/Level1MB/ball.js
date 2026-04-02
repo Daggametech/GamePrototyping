@@ -33,7 +33,37 @@ if(x == undefined)
 	else 
 		this.color = color;
 
+	//player's velocity or speed on each axis
+	this.vx = 0;
+	this.vy = 0;
 
+	this.draw = function()
+	{
+		ctx.save();
+			ctx.fillStyle = this.color;
+			ctx.translate(this.x, this.y);
+			ctx.fillRect((-this.width/2), (-this.height/2), this.width, this.height);
+			
+		ctx.restore();
+		
+	}	
+
+	this.drawCircle = function()
+	{
+		ctx.save();
+			ctx.fillStyle = this.color;
+			ctx.translate(this.x, this.y);
+			ctx.beginPath();
+		ctx.arc(-this.width/2, -this.height/2, this.width/2, 0, 2 * Math.PI);
+		ctx.stroke();
+		ctx.restore();
+		
+	}	
+
+this.move = function()
+	{
+		this.x += this.vx;
+		this.y += this.vy;
+	}
 }
 
-var ball = new ball();
