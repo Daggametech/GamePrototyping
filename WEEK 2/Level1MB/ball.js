@@ -1,6 +1,12 @@
-var ball = new ball();
 
-function GameObject(x,y,w,h,color)
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+
+ctx.beginPath();
+ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+ctx.stroke();
+
+function ball(x,y,w,h,color)
 {
 
 if(x == undefined)
@@ -27,10 +33,7 @@ if(x == undefined)
 	else 
 		this.color = color;
 
-const canvas = document.getElementById("myCanvas");
-const ctx = canvas.getContext("2d");
 
-ctx.beginPath();
-ctx.arc(100, 75, 50, 0, 2 * Math.PI);
-ctx.stroke();
 }
+
+var ball = new ball();
