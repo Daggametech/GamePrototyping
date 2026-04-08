@@ -11,7 +11,7 @@ var ball = new ball();
 
 	
     ball.vx = 2;
-	ball.vy = 0;
+	ball.vy = 1;
 
     timer = setInterval(animate, interval);
 
@@ -31,7 +31,7 @@ function animate()
 
 if(ball.y > canvas.hieght - ball.width/2)
 	{
-		ball.vy = -ball.vx	
+		ball.vy = -ball.vy	
 	}
     if(ball.y < 0 + ball.width)
       {
