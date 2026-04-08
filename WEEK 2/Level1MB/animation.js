@@ -33,7 +33,7 @@ if(ball.y > canvas.hieght - ball.width/2)
 	{
 		ball.vy = -ball.vy	
 	}
-    if(ball.y < 0 + ball.width)
+    if(ball.y < 0 + ball.width/2)
       {
         ball.vy *= -1;
       }
