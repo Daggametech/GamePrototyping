@@ -54,7 +54,7 @@ if(x == undefined)
 			ctx.fillStyle = this.color;
 			ctx.translate(this.x, this.y);
 			ctx.beginPath();
-		ctx.arc(-this.width/2, -this.height/2, this.width/2, 0, 2 * Math.PI);
+		ctx.arc(-this.width/2, -this.height/2, this.width/2, this.height/2, 0, 2 * Math.PI);
 		ctx.stroke();
 		ctx.restore();
 		
