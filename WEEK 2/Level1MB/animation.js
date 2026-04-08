@@ -24,7 +24,7 @@ function animate()
 	{
 		ball.vx = -ball.vx	
 	}
-    if(ball.x < 0 + ball.width/2)
+    if(ball.x < 0 + ball.width)
       {
         ball.vx *= -1;
       }
