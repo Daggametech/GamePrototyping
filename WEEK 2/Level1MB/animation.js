@@ -29,7 +29,17 @@ function animate()
         ball.vx *= -1;
       }
 
+if(ball.y > canvas.hieght - ball.width/2)
+	{
+		ball.vy = -ball.vx	
+	}
+    if(ball.y < 0 + ball.width)
+      {
+        ball.vy *= -1;
+      }
+	
     ball.x += ball.vx;
+	ball.y += ball.vy
 	
 	ball.drawCircle();
 }
