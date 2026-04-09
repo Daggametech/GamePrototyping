@@ -22,20 +22,28 @@ function animate()
 	
 	if(ball.x > canvas.width - ball.width/2)
 	{
+		ball.vx + 1;
 		ball.vx = -ball.vx	
+		ball.vy + 1;
 	}
     if(ball.x < 0 + ball.width)
       {
+		ball.vx - 1;
         ball.vx *= -1;
+		ball.vy + 1;
       }
 
 if(ball.y > canvas.height - ball.width/2)
 	{
+		ball.vy + 1;
 		ball.vy = -ball.vy	
+		ball.vx + 1;
 	}
     if(ball.y < 0 + ball.width/2)
       {
+		ball.vy - 1;
         ball.vy *= -1;
+		ball.vx + 1;
       }
 	
     ball.x += ball.vx;
