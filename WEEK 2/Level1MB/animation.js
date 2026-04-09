@@ -29,7 +29,7 @@ function animate()
         ball.vx *= -1;
       }
 
-if(ball.y > canvas.hieght - ball.width/2)
+if(ball.y > canvas.height - ball.width/2)
 	{
 		ball.vy = -ball.vy	
 	}
