@@ -5,7 +5,7 @@
 // var timer;
 var interval = 1000/60;
 
-var ball = new ball();
+var ball = new GameObject();
 	// canvas = document.getElementById("canvas");
 	// context = canvas.getContext("2d");	
 
