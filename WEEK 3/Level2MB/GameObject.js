@@ -1,20 +1,15 @@
 
-const canvas = document.getElementById("myCanvas");
-const ctx = canvas.getContext("2d");
 
-ctx.beginPath();
-ctx.rect(20, 20, 50, 100);
-ctx.stroke();
 
-function player1(x,y,w,h,color)
+function GameObject(x,y,w,h,color)
 {
 
 if(x == undefined)
-		this.x = canvas.width/2;
+		this.x = 50;
 	else 
 		this.x = x;
 	if(y == undefined)
-		this.y = canvas.height/2;
+		this.y = 50;
 	else 
 		this.y = y;
 	
