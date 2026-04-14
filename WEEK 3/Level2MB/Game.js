@@ -10,41 +10,32 @@ var player1 = new GameObject();
 	// context = canvas.getContext("2d");	
 
 	
-    ball.vx = 0;
-	ball.vy = 0;
+    player1.vx = 0;
+	player1.vy = 0;
 
     timer = setInterval(animate, interval);
 
 function animate()
 {
     	ctx.clearRect(0,0,canvas.width, canvas.height);	
-	ball.move();
+	player1.move();
 	
-	if(ball.x > canvas.width - ball.width/2)
+	if(w = true)
 	{
-		ball.vx = ball.vx + 1;
-		ball.vx = -ball.vx	
-		ball.vy = ball.vy + 1;
+		player1.vy = player1.vy + 1;
 	}
-    if(ball.x < 0 + ball.width)
-      {
-		ball.vx = ball.vx - 1;
-        ball.vx *= -1;
-		ball.vy = ball.vy + 1;
-      }
-
-if(ball.y > canvas.height - ball.width/2)
+    if(s = true)
 	{
-		ball.vy = ball.vy + 1;
-		ball.vy = -ball.vy	
-		ball.vx = ball.vx + 1;
+		player1.vy = player1.vy - 1;
 	}
-    if(ball.y < 0 + ball.width)
-      {
-		ball.vy = ball.vy - 1;
-        ball.vy *= -1;
-		ball.vx = ball.vx + 1;
-      }
+    if(a = true)
+	{
+		player1.vy = player1.vx + 1;
+	}
+    if(d = true)
+	{
+		player1.vy = player1.vx - 1;
+	}
 	
     ball.x += ball.vx;
 	ball.y += ball.vy

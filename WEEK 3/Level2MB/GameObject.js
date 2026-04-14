@@ -6,7 +6,7 @@ ctx.beginPath();
 ctx.rect(20, 20, 50, 100);
 ctx.stroke();
 
-function ball(x,y,w,h,color)
+function player1(x,y,w,h,color)
 {
 
 if(x == undefined)
