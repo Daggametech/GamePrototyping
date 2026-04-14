@@ -37,8 +37,8 @@ function animate()
 		player1.vy = player1.vx - 1;
 	}
 	
-    ball.x += ball.vx;
-	ball.y += ball.vy
+    player1.x += player1.vx;
+	player1.y += player1.vy
 	
-	ball.drawCircle();
+	player1.drawRectangle();
 }

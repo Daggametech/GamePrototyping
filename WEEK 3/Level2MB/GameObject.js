@@ -48,13 +48,13 @@ if(x == undefined)
 		
 	}	
 
-	this.drawCircle = function()
+	this.drawRectangle = function()
 	{
 		ctx.save();
 			ctx.fillStyle = this.color;
 			ctx.translate(this.x, this.y);
 			ctx.beginPath();
-		ctx.arc(-this.width/2, -this.height/2, this.width/2, this.height/2, 0, 2 * Math.PI);
+		ctx.arc(-this.width/2, -this.height/2, this.width/2, this.height/2);
 		ctx.stroke();
 		ctx.restore();
 		
