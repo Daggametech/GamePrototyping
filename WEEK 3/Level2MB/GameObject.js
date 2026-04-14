@@ -3,7 +3,7 @@ const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
 ctx.beginPath();
-ctx.rect(20, 20, 150, 100);
+ctx.rect(20, 20, 50, 100);
 ctx.stroke();
 
 function ball(x,y,w,h,color)
