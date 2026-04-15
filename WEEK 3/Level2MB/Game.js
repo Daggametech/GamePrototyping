@@ -33,7 +33,7 @@ function animate()
 
      if(player1.y > canvas.height - player1.height)
 	{
-		player1.vy = -player1.vy	
+		player1.vy = -player1.vy;	
 	}
     if(player1.y < 0 + player1.height)
       {
