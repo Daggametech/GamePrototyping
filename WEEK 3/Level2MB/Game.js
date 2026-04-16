@@ -36,10 +36,10 @@ function animate()
 		ball.vx = -ball.vx	
 		//ball.vy = ball.vy + 1;
 	}
-    if(ball.x < ball.width)
+    if(ball.x <  -ball.width)
       {
 		//ball.vx = ball.vx - 1;
-        ball.vx *= -1;
+        ball.x =canvas.width/2;
 		//ball.vy = ball.vy + 1;
       }
 
