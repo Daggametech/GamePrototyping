@@ -1,16 +1,16 @@
 
-const canvas = document.getElementById("myCanvas");
-const ctx = canvas.getContext("2d");
+// const canvas = document.getElementById("myCanvas");
+// const context = canvas.getContext("2d");
 
-ctx.beginPath();
-ctx.arc(100, 75, 50, 0, 2 * Math.PI);
-ctx.stroke();
+// context.beginPath();
+// context.arc(100, 75, 50, 0, 2 * Math.PI);
+// context.stroke();
 
-function ball(x,y,w,h,color)
+function GameObject(x,y,w,h,color)
 {
 
 if(x == undefined)
-		this.x = canvas.width/2;
+	this.x = canvas.width/2;
 	else 
 		this.x = x;
 	if(y == undefined)
@@ -34,29 +34,29 @@ if(x == undefined)
 		this.color = color;
 
 	//player's velocity or speed on each axis
-	this.vx = 0;
-	this.vy = 0;
+	this.vx = 2;
+	this.vy = 1;
 
-	this.draw = function()
+	this.drawCircle = function()
 	{
-		ctx.save();
-			ctx.fillStyle = this.color;
-			ctx.translate(this.x, this.y);
-			ctx.fillRect((-this.width/2), (-this.height/2), this.width, this.height);
+		context.save();
+			context.fillStyle = this.color;
+			context.translate(this.x, this.y);
+			context.fillRect((-this.width/2), (-this.height/2), this.width, this.height);
 			
-		ctx.restore();
+		context.restore();
 		
 	}	
 
 	this.drawCircle = function()
 	{
-		ctx.save();
-			ctx.fillStyle = this.color;
-			ctx.translate(this.x, this.y);
-			ctx.beginPath();
-		ctx.arc(-this.width/2, -this.height/2, this.width/2, this.height/2, 0, 2 * Math.PI);
-		ctx.stroke();
-		ctx.restore();
+		//context.save();
+		context.fillStyle = this.color;
+		//context.translate(this.x, this.y);
+		context.beginPath();
+		context.arc(this.x, this.y, this.width, 0, 2 * Math.PI);
+		context.fill();
+		//context.restore();
 		
 	}	
 

@@ -1,15 +1,15 @@
 
 
 
-function GameObject(x,y,w,h,color)
+function GameObjectP(x,y,w,h,color)
 {
 
 if(x == undefined)
-		this.x = 50;
+		this.x = canvas.width/2;
 	else 
 		this.x = x;
 	if(y == undefined)
-		this.y = 50;
+		this.y = canvas.height/2;
 	else 
 		this.y = y;
 	
@@ -24,7 +24,7 @@ if(x == undefined)
 	
 		//player's color
 	if(color == undefined)
-		this.color = "#ff0000";
+		this.color = "#0066ff";
 	else 
 		this.color = color;
 

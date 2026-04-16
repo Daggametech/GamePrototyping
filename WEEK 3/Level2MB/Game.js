@@ -6,9 +6,11 @@ var timer;
 var interval = 1000/60;
 var prevY;
 
-var player1 = new GameObject();
 	canvas = document.getElementById("myCanvas");
 	ctx = canvas.getContext("2d");	
+
+var player1 = new GameObjectP();
+
 
 	player1.y = canvas.height/2;
 	player1.width = 15;
@@ -34,11 +36,11 @@ function animate()
 
      if(player1.y > canvas.height - player1.height)
 	{
-		player1.vy *= -1;
-	}
-    if(player1.y < 0 + player1.height)
-      {
 		player1.vy = -player1.vy;
+	}
+    if(player1.y < player1.height)
+      {
+		player1.vy *= -1;
       }
 
 	player1.vy *= .85;
