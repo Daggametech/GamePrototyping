@@ -4,6 +4,7 @@ var canvas;
 var ctx;
 var timer;
 var interval = 1000/60;
+var prevX;
 
 var player1 = new GameObject();
 	canvas = document.getElementById("myCanvas");
@@ -33,11 +34,13 @@ function animate()
 
      if(player1.y > canvas.height - player1.height)
 	{
-		player1.vy = player1.vy - 3;	
+		player1.y = prevY;
+		console.log("colliding");
 	}
     if(player1.y < 0 + player1.height)
       {
-		player1.vy = player1.vy + 3;
+		player1.y = prevY;
+		console.log("colliding");		
       }
 
 	player1.vy *= .85;
