@@ -1,7 +1,7 @@
 
 
 
-function GameObjectP(x,y,w,h,color)
+function GameObject(x,y,w,h,color)
 {
 
 if(x == undefined)
@@ -32,26 +32,24 @@ if(x == undefined)
 	this.vx = 0;
 	this.vy = 0;
 
-	this.draw = function()
+	this.drawRectangle = function()
 	{
-		ctx.save();
-			ctx.fillStyle = this.color;
-			ctx.translate(this.x, this.y);
-			ctx.fillRect((-this.width/2), (-this.height/2), this.width, this.height);
+		context.save();
+			context.fillStyle = this.color;
+			context.translate(this.x, this.y);
+			context.fillRect((-this.width/2), (-this.height/2), this.width, this.height);
 			
-		ctx.restore();
+		context.restore();
 		
 	}	
 
-	this.drawRectangle = function()
+	this.drawCircle = function()
 	{
-		ctx.save();
-			ctx.fillStyle = this.color;
-			ctx.translate(this.x, this.y);
-			ctx.beginPath();
-		ctx.arc(-this.width/2, -this.height/2, this.width/2, this.height/2);
-		ctx.stroke();
-		ctx.restore();
+		context.fillStyle = this.color;
+		//context.translate(this.x, this.y);
+		context.beginPath();
+		context.arc(this.x, this.y, this.width, 0, 2 * Math.PI);
+		context.fill();
 		
 	}	
 

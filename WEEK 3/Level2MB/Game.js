@@ -1,16 +1,15 @@
 
 
 var canvas;
-var ctx;
+var context;
 var timer;
 var interval = 1000/60;
 var prevY;
 
 	canvas = document.getElementById("myCanvas");
-	ctx = canvas.getContext("2d");	
+	context = canvas.getContext("2d");	
 
-var player1 = new GameObjectP();
-
+var player1 = new GameObject();
 
 	player1.y = canvas.height/2;
 	player1.width = 15;
@@ -18,13 +17,45 @@ var player1 = new GameObjectP();
     player1.vx = 0;
 	player1.vy = 0;
 
+var ball = new GameObject();
+	
+	ball.vx = 2;
+	ball.vy = 1;
+	ball.width = 25;
+
     timer = setInterval(animate, interval);
 
 function animate()
 {
-    ctx.clearRect(0,0,canvas.width, canvas.height);	
-	
-	
+    context.clearRect(0,0,canvas.width, canvas.height);	
+	ball.move();
+
+	if(ball.x > canvas.width - ball.width)
+	{
+		//ball.vx = ball.vx + 1;
+		ball.vx = -ball.vx	
+		//ball.vy = ball.vy + 1;
+	}
+    if(ball.x < ball.width)
+      {
+		//ball.vx = ball.vx - 1;
+        ball.vx *= -1;
+		//ball.vy = ball.vy + 1;
+      }
+
+	if(ball.y > canvas.height-ball.width)
+	{
+		//ball.vy = ball.vy + 1;
+		ball.vy = -ball.vy	
+		//ball.vx = ball.vx + 1;
+	}
+    if(ball.y < ball.width)
+      {
+		//ball.vy = ball.vy - 1;
+        ball.vy *= -1;
+		//ball.vx = ball.vx + 1;
+      }
+		
 	if(w == true)
 	{
 		player1.vy = player1.vy - 1;
@@ -46,8 +77,12 @@ function animate()
 	player1.vy *= .85;
 
 	
-  
+  	ball.x += ball.vx;
+	ball.y += ball.vy
 	player1.y += player1.vy;
 	
-	player1.draw();
+	player1.drawRectangle();
+	ball.drawCircle();
+
 }
+
