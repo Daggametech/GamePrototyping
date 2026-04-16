@@ -4,7 +4,7 @@ var canvas;
 var ctx;
 var timer;
 var interval = 1000/60;
-var prevX;
+var prevY;
 
 var player1 = new GameObject();
 	canvas = document.getElementById("myCanvas");
