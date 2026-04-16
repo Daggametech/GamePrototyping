@@ -76,7 +76,14 @@ function animate()
 
 	player1.vy *= .85;
 
-	
+	if (ball.x < player1.x && ball.y == player1.y)
+	{
+		ball.vx *= -1;
+		ball.vy = -ball.vy	
+
+	}
+
+
   	ball.x += ball.vx;
 	ball.y += ball.vy
 	player1.y += player1.vy;
