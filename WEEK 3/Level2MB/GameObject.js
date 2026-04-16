@@ -76,7 +76,7 @@ this.move = function()
 	{
 		return this.y + this.height/2;
 	}
-	
+
 	this.hitTestObject = function(obj)
 	{
 		if(this.left() < obj.right() && 

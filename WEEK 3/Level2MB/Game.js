@@ -19,8 +19,8 @@ var player1 = new GameObject();
 
 var ball = new GameObject();
 	
-	ball.vx = 2;
-	ball.vy = 1;
+	ball.vx = -2;
+	//ball.vy = 1;
 	ball.width = 25;
 
     timer = setInterval(animate, interval);
@@ -76,10 +76,11 @@ function animate()
 
 	player1.vy *= .85;
 
-	if (ball.x < player1.x && ball.y == player1.y)
+	if (ball.hitTestObject(player1))
 	{
+		//Reflection Code in here
 		ball.vx *= -1;
-		ball.vy = -ball.vy	
+		ball.vy = ball.vy;	
 
 	}
 
