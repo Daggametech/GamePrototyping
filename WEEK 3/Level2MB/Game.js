@@ -86,17 +86,18 @@ function animate()
 			ball.vx *= -1;
 			ball.vy = 2;		
 		}
-		if (ball.y > third)
-		{
-			if(ball.y > third*2)
+		if (ball.y > third && ball.y < third*2)
+		{	
+			ball.vx *= -1;
+			ball.vy = ball.vy;	
+		}
+
+		if(ball.y > third*2)
 			{
 			ball.vx *= -1;
 			ball.vy = -2;
 			}
 
-			ball.vx *= -1;
-			ball.vy = ball.vy;	
-		}
 
 	}
 
