@@ -23,7 +23,7 @@ var ball = new GameObject();
 	
 	ball.vx = -2;
 	//ball.vy = 1;
-	ball.width = 25;
+	ball.width = 15;
 
     timer = setInterval(animate, interval);
 
