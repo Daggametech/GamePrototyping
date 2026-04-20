@@ -92,7 +92,7 @@ function animate()
 			ball.vy = ball.vy;	
 		}
 
-		if(ball.y > player1.y - third*2)
+		if(ball.y < player1.y - third*2)
 			{
 			ball.vx *= -1;
 			ball.vy = -2;
