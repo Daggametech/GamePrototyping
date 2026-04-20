@@ -16,6 +16,8 @@ var player1 = new GameObject();
 	player1.x = player1.width;
     player1.vx = 0;
 	player1.vy = 0;
+	third = player1.height/3;
+
 
 var ball = new GameObject();
 	
@@ -79,8 +81,22 @@ function animate()
 	if (ball.hitTestObject(player1))
 	{
 		//Reflection Code in here
-		ball.vx *= -1;
-		ball.vy = ball.vy;	
+		if(ball.y < third)
+		{
+			ball.vx *= -1;
+			ball.vy = 2;		
+		}
+		if (ball.y > third)
+		{
+			if(ball.y > third*2)
+			{
+			ball.vx *= -1;
+			ball.vy = -2;
+			}
+
+			ball.vx *= -1;
+			ball.vy = ball.vy;	
+		}
 
 	}
 
