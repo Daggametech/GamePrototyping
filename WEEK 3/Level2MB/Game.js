@@ -81,7 +81,7 @@ function animate()
 	if (ball.hitTestObject(player1))
 	{
 		//Reflection Code in here
-		if(ball.y < player1.y - third*2)
+		if(ball.y > player1.y - third)
 		{
 			ball.vx *= -1;
 			ball.vy = 2;		
@@ -92,7 +92,7 @@ function animate()
 			ball.vy = ball.vy;	
 		}
 
-		if(ball.y > player1.y - third)
+		if(ball.y > player1.y - third*2)
 			{
 			ball.vx *= -1;
 			ball.vy = -2;
