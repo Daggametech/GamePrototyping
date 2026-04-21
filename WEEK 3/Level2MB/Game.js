@@ -16,7 +16,9 @@ var player1 = new GameObject();
 	player1.x = player1.width;
     player1.vx = 0;
 	player1.vy = 0;
-	third = player1.height/3;
+
+var third = player1.height/3;
+console.log(player1.height, player1.width, player1.y);
 
 
 var ball = new GameObject();
@@ -24,6 +26,7 @@ var ball = new GameObject();
 	ball.vx = -2;
 	//ball.vy = 1;
 	ball.width = 15;
+	ball.height = 15;
 
     timer = setInterval(animate, interval);
 
@@ -67,36 +70,46 @@ function animate()
 		player1.vy = player1.vy + 1;
 	}
 
-     if(player1.y > canvas.height - player1.height)
+     if(player1.y > canvas.height - player1.height/2)
 	{
 		player1.vy = -player1.vy;
 	}
-    if(player1.y < player1.height)
+    if(player1.y < player1.height/2)
       {
 		player1.vy *= -1;
       }
 
 	player1.vy *= .85;
 
-	if (ball.hitTestObject(player1))
-	{
-		//Reflection Code in here
-		if(ball.y > player1.y - third)
-		{
-			ball.vx *= -1;
-			ball.vy = 2;		
-		}
-		if (ball.y > player1.y - third*2 && ball.y < player1.y - third)
-		{	
-			ball.vx *= -1;
-			ball.vy = ball.vy;	
+	if (player1.hitTestObject(ball))
+	{	
+		console.log(ball.y , player1.y - third)
+		if(ball.y > player1.y - third){
+		 	ball.vy = 2;
 		}
 
-		if(ball.y < player1.y - third*2)
-			{
-			ball.vx *= -1;
-			ball.vy = -2;
-			}
+		if(ball.y > player1.y + third){
+		 	ball.vy = -2;
+		}
+
+		ball.vx *= -1;
+		//Reflection Code in here
+		// if(ball.y < player1.y + third)
+		// {
+		// 	ball.vx *= -1;
+		// 	ball.vy = -2;		
+		// }
+		// if (ball.y > player1.y - third*2 && ball.y < player1.y - third)
+		// {	
+		// 	ball.vx *= -1;
+		// 	ball.vy = ball.vy;	
+		// }
+
+		// if(ball.y < player1.y - third*2)
+		// 	{
+		// 	ball.vx *= -1;
+		// 	ball.vy = -2;
+		// 	}
 
 
 	}
