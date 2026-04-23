@@ -183,11 +183,22 @@ function animate()
 	player2.drawRectangle();
 	ball.drawCircle();
 	
+	context.save();
+	context.strokeStyle = "yellow";
+	context.beginPath();
+	context.moveTo(380, canvas.height);
+	context.lineTo(380, -canvas.height);
+	context.closePath();
+	context.lineWidth = 20;
+	context.stroke();
+	context.restore();
+
 	context.font = "20px Georgia";
-	context.fillText("Player 1 || Player 2", 250, 45);
-	context.fillText( "-", 328, 70);
-	context.fillText( p1Wins, 300, 70);
-	context.fillText( p2Wins, 350, 70);
+	context.fillText("Player 1 || Player 2", 300, 45);
+	context.fillText( "-", 378, 70);
+	context.fillText( p1Wins, 350, 70);
+	context.fillText( p2Wins, 400, 70);
 	context.font = "30px Verdana";
+
 }
 
