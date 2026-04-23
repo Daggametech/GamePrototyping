@@ -42,16 +42,16 @@ function animate()
     context.clearRect(0,0,canvas.width, canvas.height);	
 	ball.move();
 
-	if(ball.x > canvas.width - ball.width)
+	if(ball.x > canvas.width + ball.width)
 	{
 		//ball.vx = ball.vx + 1;
-		ball.vx = -ball.vx	
+		ball.x = canvas.width/2;	
 		//ball.vy = ball.vy + 1;
 	}
     if(ball.x < -ball.width)
       {
 		//ball.vx = ball.vx - 1;
-        ball.x =canvas.width/2;
+        ball.x = canvas.width/2;
 		//ball.vy = ball.vy + 1;
       }
 
