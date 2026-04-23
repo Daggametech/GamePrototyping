@@ -23,10 +23,10 @@ var player2 = new GameObject();
 
 	player2.y = canvas.height/2;
 	player2.width = 15;
-	player2.x = player2.width;
+	player2.x = canvas.width - player2.width;
     player2.vx = 0;
 	player2.vy = 0;
-
+	player2.color = "green";
 
 var ball = new GameObject();
 	
@@ -171,6 +171,8 @@ function animate()
   	ball.x += ball.vx;
 	ball.y += ball.vy
 	player1.y += player1.vy;
+	player2.y += player2.vy;
+
 	
 	player1.drawRectangle();
 	player2.drawRectangle();
