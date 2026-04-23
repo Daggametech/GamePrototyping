@@ -5,6 +5,8 @@ var context;
 var timer;
 var interval = 1000/60;
 var prevY;
+var p1Wins = 0;
+var p2Wins = 0;
 
 	canvas = document.getElementById("myCanvas");
 	context = canvas.getContext("2d");	
@@ -16,6 +18,7 @@ var player1 = new GameObject();
 	player1.x = player1.width;
     player1.vx = 0;
 	player1.vy = 0;
+	player1.color = "red";
 
 var third = player1.height/6;
 
@@ -45,13 +48,15 @@ function animate()
 	if(ball.x > canvas.width + ball.width)
 	{
 		//ball.vx = ball.vx + 1;
-		ball.x = canvas.width/2;	
+		ball.x = canvas.width/2;
+		p1Wins = p1Wins + 1;
 		//ball.vy = ball.vy + 1;
 	}
     if(ball.x < -ball.width)
       {
 		//ball.vx = ball.vx - 1;
         ball.x = canvas.width/2;
+		p2Wins = p2Wins + 1;
 		//ball.vy = ball.vy + 1;
       }
 
@@ -177,6 +182,12 @@ function animate()
 	player1.drawRectangle();
 	player2.drawRectangle();
 	ball.drawCircle();
-
+	
+	context.font = "20px Georgia";
+	context.fillText("Player 1 || Player 2", 250, 45);
+	context.fillText( "-", 328, 70);
+	context.fillText( p1Wins, 300, 70);
+	context.fillText( p2Wins, 350, 70);
+	context.font = "30px Verdana";
 }
 
