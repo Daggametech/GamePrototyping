@@ -19,6 +19,14 @@ var player1 = new GameObject();
 
 var third = player1.height/6;
 
+var player2 = new GameObject();
+
+	player2.y = canvas.height/2;
+	player2.width = 15;
+	player2.x = player2.width;
+    player2.vx = 0;
+	player2.vy = 0;
+
 
 var ball = new GameObject();
 	
@@ -40,7 +48,7 @@ function animate()
 		ball.vx = -ball.vx	
 		//ball.vy = ball.vy + 1;
 	}
-    if(ball.x <  -ball.width)
+    if(ball.x < -ball.width)
       {
 		//ball.vx = ball.vx - 1;
         ball.x =canvas.width/2;
@@ -59,7 +67,7 @@ function animate()
         ball.vy *= -1;
 		//ball.vx = ball.vx + 1;
       }
-	  
+	
 	if(w == true)
 	{
 		player1.vy = player1.vy - 1;
@@ -80,9 +88,28 @@ function animate()
 
 	player1.vy *= .85;
 
+	if(arrowup == true)
+		{
+			player2.vy = player2.vy - 1;
+		}
+		if(arrowdown == true)
+		{
+			player2.vy = player2.vy + 1;
+		}
+
+		if(player2.y > canvas.height - player2.height/2)
+		{
+			player2.vy = -player2.vy;
+		}
+		if(player2.y < player2.height/2)
+		{
+			player2.vy *= -1;
+		}
+
+		player2.vy *= .85;
+
 	if (player1.hitTestObject(ball))
 	{	
-		console.log(ball.y , player1.y - third)
 		if(ball.y > player1.y - third && ball.y < player1.y + third)
 		{
 			ball.vy = ball.vy;
@@ -119,12 +146,34 @@ function animate()
 
 	}
 
+	if (player2.hitTestObject(ball))
+	{
+		if(ball.y > player2.y - third && ball.y < player2.y + third)
+		{
+			ball.vy = ball.vy;
+		}
+		else
+		{
+		if(ball.y < player2.y - third){
+		 	ball.vy = -2;
+		}
+
+		if(ball.y > player2.y + third){
+		 	ball.vy = 2;
+		}
+		}
+
+	ball.vx *= -1;
+
+	}
+
 
   	ball.x += ball.vx;
 	ball.y += ball.vy
 	player1.y += player1.vy;
 	
 	player1.drawRectangle();
+	player2.drawRectangle();
 	ball.drawCircle();
 
 }
