@@ -11,6 +11,8 @@ var p2Wins = 0;
 	canvas = document.getElementById("myCanvas");
 	context = canvas.getContext("2d");	
 
+var img = document.getElementById("flair-ball");
+
 var player1 = new GameObject();
 
 	player1.y = canvas.height/2;
@@ -177,12 +179,13 @@ function animate()
 	ball.y += ball.vy
 	player1.y += player1.vy;
 	player2.y += player2.vy;
-
 	
 	player1.drawRectangle();
 	player2.drawRectangle();
 	ball.drawCircle();
-	
+
+	context.drawImage(img, ball.x, ball.y, ball.width, ball.height);
+
 	context.save();
 	context.strokeStyle = "yellow";
 	context.beginPath();
@@ -199,6 +202,7 @@ function animate()
 	context.fillText( p1Wins, 350, 70);
 	context.fillText( p2Wins, 400, 70);
 	context.font = "30px Verdana";
+
 
 }
 
