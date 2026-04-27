@@ -11,7 +11,7 @@ var p2Wins = 0;
 	canvas = document.getElementById("myCanvas");
 	context = canvas.getContext("2d");	
 
-var img = document.getElementById("flair-ball");
+var img = document.getElementById("ric");
 
 var player1 = new GameObject();
 
@@ -182,9 +182,8 @@ function animate()
 	
 	player1.drawRectangle();
 	player2.drawRectangle();
-	ball.drawCircle();
 
-	context.drawImage(img, ball.x, ball.y, ball.width, ball.height);
+	context.drawImage(ric, ball.x - ball.width, ball.y - ball.height, ball.width*2, ball.height*2);
 
 	context.save();
 	context.strokeStyle = "yellow";
