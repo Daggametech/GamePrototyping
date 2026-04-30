@@ -31,7 +31,13 @@ var player;
 		platform2.y = platform0.y- 200;
 		platform2.color = "#66ff33";
 
-		
+	platform3 = new GameObject();
+		platform3.width = player.width;
+		platform3.height = platform0.height * 3;
+		platform3.x = platform0.width + player.width/2;
+		platform3.color = "#66ff33";
+		platform3.y = platform0.y - platform0.height;
+		platform3.color = "#66ff33";
 	
 	goal = new GameObject({width:24, height:50, x:platform1.x, y:platform1.y+100, color:"#00ffff"});
 	
@@ -116,7 +122,11 @@ function animate()
 		player.x--;
 		player.vx = 0;
 	}
-	
+	while(platform3.hitTestPoint(player.right()))
+	{
+		player.x--;
+		player.vx = 0;
+	}
 	while(platform1.hitTestPoint(player.left()))
 	{
 		player.x++;
@@ -139,7 +149,9 @@ function animate()
 	
 	
 	platform0.drawRect();
+	// platform1.drawRect();
 	platform2.drawRect();
+	platform3.drawRect();
 	
 	player.drawRect();
 	
