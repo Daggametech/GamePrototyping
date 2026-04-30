@@ -21,12 +21,12 @@ var player;
 	
 	platform1 = new GameObject();
 		platform1.width = 575;
-		platform1.x = canvas.width -platform1.width/2;
-		platform1.y = player.y +player.height/2 + platform1.height/2;
+		platform1.x = platform0.x;
+		platform1.y = platform0.y - 200;
 		platform1.color = "#66ff33";
 		
 	
-	goal = new GameObject({width:24, height:50, x:platform1.x + 100, y:platform1.y-100, color:"#00ffff"});
+	goal = new GameObject({width:24, height:50, x:platform1.x, y:platform1.y-250, color:"#00ffff"});
 	
 
 	var fX = .85;
@@ -82,49 +82,46 @@ function animate()
 		player.x--;
 		player.vx = 0;
 	}
+	while(platform0.hitTestPoint(player.top()) && player.vy <=0)
+	{
+		player.y++;
+		player.vy = 0;
+	}
 	
+	
+	
+	//---------Objective: Get the blue pearl----------------------------------------------------------------------------------------------------
+	//---------Jump through and land on the block without changin the physics
+	
+	
+
+	if(platform1.hitTestPoint(player.top()) && player.vy <=0)
+	{
+		player.y--;
+		player.vy = 0;
+		player.canJump = true;
+
+	}
 	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0)
 	{
 		player.y--;
 		player.vy = 0;
 		player.canJump = true;
 	}
-	while(platform1.hitTestPoint(player.left()) && player.vx <=0)
+	if(platform1.hitTestPoint(player.left()) && player.vx <=0)
 	{
 		player.x++;
 		player.vx = 0;
 	}
-	while(platform1.hitTestPoint(player.right()) && player.vx >=0)
+	if(platform1.hitTestPoint(player.right()) && player.vx >=0)
 	{
 		player.x--;
 		player.vx = 0;
 	}
 	
-	
-	//---------Objective: Jump the gap to get the blue pearl----------------------------------------------------------------------------------------------------
-	//---------Call the players drawDebug() function to see where his current hitpoints are
-	//---------Change the objects in the hitTestPoint function so that the player has a hitpoint on his bottom left and bottom right.
-	//---------You will need to manually draw these new points if you want to see them for debugging purposes.
-	
-	/*-------------------------------------------------------------------------------------------------------------------------------------
-				NOTE: An unnecessary but great alternative to simply changing the object literals in the hitTestPoint 
-				would be to create actual bottomRight() and bottomLeft() methods in your GameObject. However this is not necessary to complete this level. 
-				You simply need to change the values of the x and y properties of the object literals listed below to find the solution.
-	*/
 
-	while(platform0.hitTestPoint({x:player.x, y:player.y}) && player.vy >=0)
-	{
-		player.y--;
-		player.vy = 0;
-		player.canJump = true;
-	}
-	
-	while(platform1.hitTestPoint({x:player.x, y:player.y}) && player.vy >=0)
-	{
-		player.y--;
-		player.vy = 0;
-		player.canJump = true;
-	}
+
+
 	
 	if(player.hitTestObject(goal))
 	{
@@ -132,11 +129,18 @@ function animate()
 	}
 
 	
+	
+	
+	
+	
 	platform0.drawRect();
 	platform1.drawRect();
 
+	
 	player.drawRect();
 	
+	//Show hit points
+	player.drawDebug();
 	goal.drawCircle();
 }
 
