@@ -135,6 +135,13 @@ function animate()
 		player.vy = 0;
 		player.canJump = true;
 	}
+
+	while(platform1.hitTestPoint(player.bottomright()) && player.vy >=0)
+	{
+		player.y--;
+		player.vy = 0;
+		player.canJump = true;
+	}
 	
 	if(player.hitTestObject(goal))
 	{
