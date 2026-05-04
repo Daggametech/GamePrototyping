@@ -52,11 +52,11 @@ function GameObject(obj)
 		
 	}	
 
-	this.clear = function()
-	{
-		context.save();
-		context.clearRect(x, y, width, height);
-	}
+	// this.clear = function()
+	// {
+	// 	context.save();
+	// 	context.clearRect(x, y, width, height);
+	// }
 
 	this.move = function()
 	{

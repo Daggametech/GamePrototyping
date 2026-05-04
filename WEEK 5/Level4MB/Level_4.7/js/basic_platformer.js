@@ -138,9 +138,7 @@ function animate()
 	// }
 	if(platform1.hitTestPoint(player.right()) && player.vx >=0)
 	{
-		// platform1.clear();
-		delete GameObject.platform1;
-		platform1.clearRect(platform1.x, platform1.y, platform1.width, platform1.height);
+		platform1.x = 10000;
 		
 	}
 	
