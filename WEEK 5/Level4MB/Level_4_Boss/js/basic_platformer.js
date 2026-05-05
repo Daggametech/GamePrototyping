@@ -5,6 +5,7 @@ var context;
 var timer;
 var interval;
 var player;
+var hit = 0;
 
 
 	canvas = document.getElementById("canvas");
@@ -103,26 +104,41 @@ function animate()
 		player.y++;
 		player.vy = 0;
 	}
-	while(obstical0.hitTestPoint(player.top()) && player.vy <=0)
+	if(obstical0.hitTestPoint(player.top()) && player.vy <=0)
 	{
 		player.y++;
 		player.vy = 0;
+		player.vx = 0;
+		obstical0.vx = 0;
+
+		hit++;
 	}
-	while(obstical0.hitTestPoint(player.bottom()) && player.vy >=0)
+	if(obstical0.hitTestPoint(player.bottom()) && player.vy >=0)
 	{
 		player.y--;
 		player.vy = 0;
-		player.canJump = true;
+		player.vx = 0;
+		obstical0.vx = 0;
+
+		hit++
 	}
-	while(obstical0.hitTestPoint(player.left()) && player.vx <=0)
+	if(obstical0.hitTestPoint(player.left()) && player.vx <=0)
 	{
 		player.x++;
 		player.vx = 0;
+		player.vy = 0;
+		obstical0.vx = 0;
+
+		hit++
 	}
-	while(obstical0.hitTestPoint(player.right()) && player.vx >=0)
+	if(obstical0.hitTestPoint(player.right()) && player.vx >=0)
 	{
 		player.x--;
 		player.vx = 0;
+		player.vy = 0;
+		obstical0.vx = 0;
+
+		hit++;
 	}
 	if (obstical0.x < 0)
 	{
@@ -183,6 +199,13 @@ function animate()
 	player.drawRect();
 	obstical0.drawRect();
 	obstical0.move();
+
+	if (hit > 0)
+	{
+		context.font = "100px Georgia";
+		context.fillText("Game Over", canvas.width/2 - 250, canvas.height/2);
+
+	}
 
 
 	//Show hit points
