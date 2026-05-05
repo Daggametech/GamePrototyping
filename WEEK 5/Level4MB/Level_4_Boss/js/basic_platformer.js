@@ -21,9 +21,9 @@ var player;
 	obstical0 = new GameObject();
 		obstical0.width = player.width/2;
 		obstical0.height = player.height;
-		obstical0.x = 1000;
+		obstical0.x = 1500;
 		obstical0.y = 700;
-		obstical0.vx = 2;
+		obstical0.vx = -4;
 		obstical0.color = "#faa70d";
 
 
@@ -103,27 +103,31 @@ function animate()
 		player.y++;
 		player.vy = 0;
 	}
-	// while(platform2.hitTestPoint(player.top()) && player.vy <=0)
-	// {
-	// 	player.y++;
-	// 	player.vy = 0;
-	// }
-	// while(platform2.hitTestPoint(player.bottom()) && player.vy >=0)
-	// {
-	// 	player.y--;
-	// 	player.vy = 0;
-	// 	player.canJump = true;
-	// }
-	// while(platform2.hitTestPoint(player.left()) && player.vx <=0)
-	// {
-	// 	player.x++;
-	// 	player.vx = 0;
-	// }
-	// while(platform2.hitTestPoint(player.right()) && player.vx >=0)
-	// {
-	// 	player.x--;
-	// 	player.vx = 0;
-	// }
+	while(obstical0.hitTestPoint(player.top()) && player.vy <=0)
+	{
+		player.y++;
+		player.vy = 0;
+	}
+	while(obstical0.hitTestPoint(player.bottom()) && player.vy >=0)
+	{
+		player.y--;
+		player.vy = 0;
+		player.canJump = true;
+	}
+	while(obstical0.hitTestPoint(player.left()) && player.vx <=0)
+	{
+		player.x++;
+		player.vx = 0;
+	}
+	while(obstical0.hitTestPoint(player.right()) && player.vx >=0)
+	{
+		player.x--;
+		player.vx = 0;
+	}
+	if (obstical0.x < 0)
+	{
+		obstical0.x = 1500;
+	}
 	// while(platform1.hitTestPoint(player.top()) && player.vy <=0)
 	// {
 	// 	player.y++;
@@ -178,6 +182,7 @@ function animate()
 	// platform1.drawRect();
 	player.drawRect();
 	obstical0.drawRect();
+	obstical0.move();
 
 
 	//Show hit points
