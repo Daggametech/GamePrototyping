@@ -18,7 +18,15 @@ var player;
 		platform0.y = canvas.height;
 		platform0.color = "#66ff33";
 		
-	
+	obstical0 = new GameObject();
+		obstical0.width = player.width/2;
+		obstical0.height = player.height;
+		obstical0.x = 1000;
+		obstical0.y = 700;
+		obstical0.vx = 2;
+		obstical0.color = "#faa70d";
+
+
 	// platform1 = new GameObject();
 	// 	platform1.x = 500;
 	// 	platform1.y = platform0.y- platform0.height/2 - platform1.height/2;
@@ -169,7 +177,9 @@ function animate()
 	// platform2.drawRect();
 	// platform1.drawRect();
 	player.drawRect();
-	
+	obstical0.drawRect();
+
+
 	//Show hit points
 	player.drawDebug();
 	// goal.drawCircle();
