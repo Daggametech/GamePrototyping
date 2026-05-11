@@ -52,15 +52,8 @@ function animate()
 	//------------------------------------------------------END OF INSTRUCTIONS-------------------------------------------------
 	//--------------------------------------------------------------------------------------------------------------------------
 	
-	if(player.x - pearl.x < 10 && player.y - pearl.y < 10)
-	{
-		magnet();
-	}
+	
 
-	if(pearl.x == player.x && pearl.y == player.y)
-	{
-		pearl.x = 10000;
-	}
 
 	player.drawTriangle();
 	pearl.drawCircle();
@@ -122,7 +115,15 @@ function magnet()
 {
 	var dx = player.x - pearl.x;
 	var dy = player.y - pearl.y;
-	
-	pearl.x += dx /25;
+	var distance = Math.sqrt(dx * dx + dy * dy);
+	if (distance < 300) 
+	{pearl.x += dx /25;
 	pearl.y += dy /25;
+	}
+
+	if (distance < 5)
+	{
+		pearl.x = 10000;
+	}
+	
 }
