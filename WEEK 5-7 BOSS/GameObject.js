@@ -51,12 +51,13 @@ if(x == undefined)
 
 	this.drawCircle = function()
 	{
+		context.save()
 		context.fillStyle = this.color;
 		//context.translate(this.x, this.y);
 		context.beginPath();
 		context.arc(this.x, this.y, this.width, 0, 2 * Math.PI);
 		context.fill();
-		
+		context.restore();
 	}	
 
 this.move = function()

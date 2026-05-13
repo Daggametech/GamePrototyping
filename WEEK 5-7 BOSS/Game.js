@@ -36,7 +36,7 @@ for(var i = 0; i < 5; i++)
     items[i].height = 25;
     items[i].color = "green";
     items[i].vx = 0;
-    items[i].vy = -((Math.random()*5)+1);
+    items[i].vy = ((Math.random()*5)+2);
 
 }
 
@@ -52,7 +52,7 @@ for(var i = 0; i < 5; i++)
     hazards[i].height = 25;
     hazards[i].color = "red";
     hazards[i].vx = 0;
-    hazards[i].vy = -((Math.random()*5)+1);
+    hazards[i].vy = ((Math.random()*5)+2);
 }
 
 
@@ -72,21 +72,21 @@ for(var i = 0; i < 5; i++)
 
 for(var i = 0; i < 5; i++)
 {
-   if(items[i].y < 900)
+   if(items[i].y > 900)
     {
         items[i].y = -canvas.height;
         items[i].x = Math.random()*canvas.width;
-        items[i].vy = -((Math.random()*5)+1);
+        items[i].vy = ((Math.random()*5)+2);
     } 
 }
 
 for(var i = 0; i < 5; i++)
 {
-    if(hazards[i].y < 900)
+    if(hazards[i].y > 900)
     {
         hazards[i].y = -canvas.height;
         hazards[i].x = Math.random()*canvas.width;
-        hazards[i].vy = -((Math.random()*5)+1);
+        hazards[i].vy = ((Math.random()*5)+2);
     }
 }
 
@@ -120,11 +120,11 @@ for(var i = 0; i < 5; i++)
     {
         items[i].y = -canvas.height;
         items[i].x = Math.random()*canvas.width;
-        items[i].vy = -((Math.random()*5)+1);
+        items[i].vy = ((Math.random()*5)+2);
 
         player1.color = "green";
 
-        timer = setTimeout(returncolor, 5);
+        timer = setTimeout(returncolor, 500);
         
         Score++;
     }
@@ -136,7 +136,7 @@ for(var r = 0; r < 5; r++)
     {
         player1.color = "red";
 
-        timer2 = setTimeout(returncolor, 5);
+        timer2 = setTimeout(returncolor, 500);
         
         for(var i = 0; i < 5; i++)
         {
@@ -148,7 +148,7 @@ for(var r = 0; r < 5; r++)
             items[i].height = 25;
             items[i].color = "green";
             items[i].vx = 0;
-            items[i].vy = -((Math.random()*5)+1);
+            items[i].vy = ((Math.random()*5)+2);
 
         }
 
@@ -162,7 +162,7 @@ for(var r = 0; r < 5; r++)
             hazards[i].height = 25;
             hazards[i].color = "red";
             hazards[i].vx = 0;
-            hazards[i].vy = -((Math.random()*5)+1);
+            hazards[i].vy = ((Math.random()*5)+2);
         }
 
         Score = 0;
@@ -185,6 +185,9 @@ for(var i = 0; i < 5; i++)
 	context.font = "30px Arial";
     context.weight = "bold"
     context.strokeStyle = "black";
+    context.color = "black";
+    canvas.strokeStyle = "black";
+    context.save()
 	context.fillText(`Score:${Score}`, 80, 25);
 
 
