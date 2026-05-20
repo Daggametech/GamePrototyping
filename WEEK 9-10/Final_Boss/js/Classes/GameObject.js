@@ -161,7 +161,18 @@ function GameObject(obj)
 	// }
 
 
-
+	this.overlap = function(obj)
+	{
+		if(	this.x >= obj.x - 50 && 
+			this.x <= obj.x + 50 &&
+			this.y >= obj.y - 50 && 
+			this.y <= obj.y + 50
+		)
+		{
+			return true;
+		}
+		return false;
+	}
 
 
 
