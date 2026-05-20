@@ -7,6 +7,30 @@ var context = canvas.getContext(`2d`);
 var interval = 1000/60;
 var timer = setInterval(animate, interval);
 
+
+var startButton = new GameObject();
+
+startButton.width = 100;
+startButton.hitBoxWidth = 200;
+startButton.x = canvas.width/2;
+startButton.y = canvas.height/2;
+// console.log(startButton.collisionPoints.right);
+
+
+var instructButton = new GameObject();
+
+instructButton.width = 100;
+instructButton.hitBoxWidth = 200;
+instructButton.x = canvas.width/2;
+instructButton.y = canvas.height/2 - 400;
+// console.log(instructButton.collisionPoints.right);
+
+
+var menuBackground = new GameObject();
+menuBackground.color = "black";
+menuBackground.width=canvas.width;
+menuBackground.height=canvas.height;
+
 var gameStates = [];
 
 
