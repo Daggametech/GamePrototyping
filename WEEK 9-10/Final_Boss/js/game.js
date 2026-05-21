@@ -31,6 +31,65 @@ gameBackground.color = "black";
 gameBackground.width=canvas.width;
 gameBackground.height=canvas.height;
 
+
+	var fX = .85;
+	var fY = .97;
+	
+	var gravity = 1;
+	var gameOver = false;
+
+
+var player;
+
+
+var hit = 0;
+
+player = new GameObject({x:300, y:canvas.height/2-100});
+player.jumpHeight = -35;
+
+var	platform0 = new GameObject();
+		platform0.width = canvas.width;
+		platform0.x = canvas.width/2;
+		platform0.y = canvas.height;
+		platform0.color = "#66ff33";
+var platform = [];
+for(var i = 1; i < 6; i++)
+{
+    platform[i] = new GameObject();
+		platform[i].width = 200 + Math.random()*201;
+		platform[i].height = 50;
+		platform[i].x = 1500 + Math.random()*1001;
+		platform[i].y = platform0.y - 200 - (Math.random()*801);
+		platform[i].color = "#66ff33";
+		platform[i].vx = -4;
+
+}
+var junk = [];
+for(var i = 1; i < 8; i++)
+{
+	junk[i] = new GameObject();
+		junk[i].width = player.width/2;
+		junk[i].height = player.height;
+		junk[i].x = 1500;
+		junk[i].y = 700;
+		junk[i].vx = -4;
+		junk[i].color = "#faa70d";
+
+}
+var falljunk = [];
+for(var i = 1; i < 8; i++)
+{
+	falljunk[i] = new GameObject();
+		falljunk[i].width = player.width/2;
+		falljunk[i].height = player.height;
+		falljunk[i].x = Math.random()*canvas.width;
+		falljunk[i].y = -100 - Math.random()*201;
+		falljunk[i].vy = -4;
+		falljunk[i].color = "#faa70d";
+
+}
+
+
 var gameStates = [];
 
 
@@ -150,7 +209,119 @@ gameStates["instructions"] = function(){
 	context.fillText("Click here to play", canvas.width/2 - 190, canvas.height/2 + 230);
 }
 
+gameStates["mainGame"] = function(){
 
+	
+	context.clearRect(0,0,canvas.width, canvas.height);	
+	gameBackground.drawRect();
+	//player.y = 700;
+
+	if (!gameOver) {
+		if (w && player.canJump && player.vy == 0) {
+			player.canJump = false;
+			player.vy += player.jumpHeight;
+		}
+
+		if (a) {
+			player.vx += -player.ax * player.force;
+		}
+		if (d) {
+			player.vx += player.ax * player.force;
+		}
+	}
+	
+
+	player.vx *= fX;
+	player.vy *= fY;
+	
+	player.vy += gravity;
+	
+	player.x += Math.round(player.vx);
+	player.y += Math.round(player.vy);
+
+
+	while(platform0.hitTestPoint(player.bottom()) && player.vy >=0)
+	{
+		player.y--;
+		player.vy = 0;
+		player.canJump = true;
+	}
+	while(platform0.hitTestPoint(player.left()) && player.vx <=0)
+	{
+		player.x++;
+		player.vx = 0;
+	}
+	while(platform0.hitTestPoint(player.right()) && player.vx >=0)
+	{
+		player.x--;
+		player.vx = 0;
+	}
+	while(platform0.hitTestPoint(player.top()) && player.vy <=0)
+	{
+		player.y++;
+		player.vy = 0;
+	}
+	while(platform0.hitTestPoint(player.bottomleft()) && player.vy >=0)
+	{
+		player.y--;
+		player.vy = 0;
+		player.canJump = true;
+	}
+	while(platform0.hitTestPoint(player.bottomright()) && player.vy >=0)
+	{
+		player.y--;
+		player.vy = 0;
+		player.canJump = true;
+	}
+	
+
+
+	for(var i = 1; i < platform.length; i++){
+
+		while(platform[i].hitTestPoint(player.bottom()) && player.vy >=0)
+		{
+			player.y--;
+			player.vy = 0;
+			player.canJump = true;
+		}
+		while(platform[i].hitTestPoint(player.bottomleft()) && player.vy >=0)
+		{
+			player.y--;
+			player.vy = 0;
+			player.canJump = true;
+		}
+		while(platform[i].hitTestPoint(player.bottomright()) && player.vy >=0)
+		{
+			player.y--;
+			player.vy = 0;
+			player.canJump = true;
+		}
+
+		if (platform[i].x < -100)
+		{
+			platform[i].x = 1500 + Math.random()*1001;
+			platform[i].y = platform0.y - 200 - (Math.random()*801);
+
+		}
+		console.log(platform[i].x, platform[i].y);
+		platform[i].move();
+
+		platform[i].drawRect();
+	}
+
+
+
+
+
+	
+
+
+	
+	platform0.drawRect();
+	player.drawRect();
+
+	
+}
 
 function animate()
 {
