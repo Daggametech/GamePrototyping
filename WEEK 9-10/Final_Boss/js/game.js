@@ -58,23 +58,24 @@ for(var i = 1; i < 6; i++)
     platform[i] = new GameObject();
 		platform[i].width = 200 + Math.random()*201;
 		platform[i].height = 50;
-		platform[i].x = 1500 + Math.random()*2001;
-		platform[i].y = platform0.y - 200 - (Math.random()*601);
+		platform[i].x = 2500 + i*200;
+		platform[i].y = platform0.y - 200 - (Math.random()*401);
 		platform[i].color = "#66ff33";
 		platform[i].vx = -4;
 
 }
 var junk = [];
+var lastx = 2500;
 for(var i = 0; i < 8; i++)
 {
 	junk[i] = new GameObject();
 		junk[i].width = player.width/2 +Math.random()*50;
-		junk[i].height = player.height + Math.random()*80;
-		junk[i].x = 1500 + Math.random()*3000;
+		junk[i].height = player.height + Math.random()*150;
+		junk[i].x = lastx + Math.random()*1000;
 		junk[i].y = 700;
 		junk[i].vx = -4;
 		junk[i].color = "#faa70d";
-
+		lastx = junk[i].x;
 }
 var falljunk = [];
 for(var i = 0; i < 8; i++)
@@ -84,11 +85,23 @@ for(var i = 0; i < 8; i++)
 		falljunk[i].height = player.height + Math.random()*25;
 		falljunk[i].x = Math.random()*canvas.width;
 		falljunk[i].y = -100 - Math.random()*2000;
-		falljunk[i].vy = 4;
+		falljunk[i].vy = 1 + Math.random()*9;
+		falljunk[i].vx = (Math.random()*3)*-1;
 		falljunk[i].color = "#faa70d";
 
 }
+var bouncePad = [];
+for(var i = 0; i < 4; i++)
+{
+	bouncePad[i] = new GameObject();
+		bouncePad[i].width = player.width;
+		bouncePad[i].height = player.height/4;
+		bouncePad[i].x = 2500 + i*1000;
+		bouncePad[i].y = 700;	
+		bouncePad[i].color = "purple";
+		bouncePad[i].vx = -4;
 
+}
 
 var gameStates = [];
 
@@ -297,11 +310,12 @@ gameStates["mainGame"] = function(){
 			player.canJump = true;
 		}
 
-		if (platform[i].x < -100)
+		if (platform[i].x < -500)
 		{
-			platform[i].x = 1500 + Math.random()*2001;
-			platform[i].y = platform0.y - 200 - (Math.random()*601);
-
+			platform[i].x = 2500 + i*200;
+			platform[i].y = platform0.y - 200 - (Math.random()*401);
+			platform[i].width = 200 + Math.random()*201;
+			platform[i].height = 50;
 		}
 		console.log(platform[i].x, platform[i].y);
 		platform[i].move();
@@ -316,12 +330,13 @@ gameStates["mainGame"] = function(){
 		hit++;
 		}
 
-		if (junk[i].x < -100)
+		if (junk[i].x < -500)
 		{
 		junk[i].y = 700;
-		junk[i].x = 1500 + Math.random()*2000;
-		junk[i].width = player.width/2 +Math.random()*52;
-		junk[i].height = player.height + Math.random()*80;
+		junk[i].x = lastx + Math.random()*1000;
+		junk[i].width = player.width/2 +Math.random()*50;
+		junk[i].height = player.height + Math.random()*150;
+		lastx = junk.x;
 		}
 
 		junk[i].move();
@@ -334,6 +349,7 @@ gameStates["mainGame"] = function(){
 
 		if(falljunk[i].hitTestObject(player)){
 		falljunk[i].vy = 0;
+		falljunk[i].vx = 0;
 		hit++;
 		}
 
@@ -343,6 +359,8 @@ gameStates["mainGame"] = function(){
 		falljunk[i].y = -100 - Math.random()*2000;
 		falljunk[i].width = player.width/2 +Math.random()*52;
 		falljunk[i].height = player.height + Math.random()*80;
+		falljunk[i].vy = 1 + Math.random()*9;
+		falljunk[i].vx = (Math.random()*3)*-1;
 		}
 
 		falljunk[i].move();
@@ -351,7 +369,35 @@ gameStates["mainGame"] = function(){
 
 	}
 
-	
+	for(var i = 0; i < bouncePad.length; i++){
+
+		if (bouncePad[i].hitTestPoint(player.bottom()) && player.vy >=0)
+		{
+			player.y--;
+			player.vy = -40;
+		}
+		if (bouncePad[i].hitTestPoint(player.bottomleft()) && player.vy >=0)
+		{
+			player.y--;
+			player.vy = -40;
+		}
+		if (bouncePad[i].hitTestPoint(player.bottomright()) && player.vy >=0)
+		{
+			player.y--;
+			player.vy = -40;
+		}
+
+		if (bouncePad[i].x < -500)
+		{
+		bouncePad[i].y = 700;
+		bouncePad[i].x = 2500 +  i*1000;
+		}
+
+		bouncePad[i].move();
+
+		bouncePad[i].drawRect();
+
+	}
 
 
 	
