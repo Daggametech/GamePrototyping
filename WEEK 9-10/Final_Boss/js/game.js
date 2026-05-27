@@ -7,6 +7,14 @@ var context = canvas.getContext(`2d`);
 var interval = 1000/60;
 var timer = setInterval(animate, interval);
 
+var InGameTimer;
+
+var SurvivalCount = 0;
+
+function count ()
+{
+	SurvivalCount++;
+}
 
 var startButton = new GameObject();
 
@@ -25,6 +33,14 @@ instructButton.x = canvas.width/2;
 instructButton.y = canvas.height/2 + 200;
 // console.log(instructButton.collisionPoints.right);
 
+
+var menuButton = new GameObject();
+
+menuButton.width = 100;
+menuButton.hitBoxWidth = 200;
+menuButton.x = canvas.width/2;
+menuButton.y = canvas.height/2 + 200;
+// console.log(instructButton.collisionPoints.right);
 
 var gameBackground = new GameObject();
 gameBackground.color = "black";
@@ -121,7 +137,7 @@ gameStates["menu"] = function(){
 	{
 		if(mouse.pressed)
 		{
-			//Changes to the game state
+			InGameTimer = setInterval(count, 1000);
 			changeStates("mainGame");
 		}
 
@@ -318,7 +334,12 @@ gameStates["mainGame"] = function(){
 			platform[i].height = 50;
 		}
 		console.log(platform[i].x, platform[i].y);
-		platform[i].move();
+
+		if (!gameOver) 
+		{
+			platform[i].move();
+		}
+		
 
 		platform[i].drawRect();
 	}
@@ -333,14 +354,15 @@ gameStates["mainGame"] = function(){
 		if (junk[i].x < -500)
 		{
 		junk[i].y = 700;
-		junk[i].x = lastx + Math.random()*1000;
-		junk[i].width = player.width/2 +Math.random()*50;
+		junk[i].x = 2500 + i*200;
+		junk[i].width = player.width/2 + Math.random()*50;
 		junk[i].height = player.height + Math.random()*150;
-		lastx = junk.x;
 		}
 
-		junk[i].move();
-
+		if (!gameOver) 
+		{
+			junk[i].move();
+		}
 		junk[i].drawRect();
 
 	}
@@ -353,7 +375,7 @@ gameStates["mainGame"] = function(){
 		hit++;
 		}
 
-		if (falljunk[i].y > 900)
+		if (falljunk[i].y > 900 || falljunk[i].x < -50)
 		{
 		falljunk[i].x = Math.random()*canvas.width;
 		falljunk[i].y = -100 - Math.random()*2000;
@@ -363,7 +385,10 @@ gameStates["mainGame"] = function(){
 		falljunk[i].vx = (Math.random()*3)*-1;
 		}
 
-		falljunk[i].move();
+		if (!gameOver) 
+		{
+			falljunk[i].move();
+		}
 
 		falljunk[i].drawRect();
 
@@ -393,7 +418,10 @@ gameStates["mainGame"] = function(){
 		bouncePad[i].x = 2500 +  i*1000;
 		}
 
-		bouncePad[i].move();
+		if (!gameOver) 
+		{
+			bouncePad[i].move();
+		}
 
 		bouncePad[i].drawRect();
 
@@ -404,7 +432,175 @@ gameStates["mainGame"] = function(){
 	platform0.drawRect();
 	player.drawRect();
 
-	
+	context.font = "16px Georgia";
+	context.color = "white";
+	context.fillText(`Timer:${SurvivalCount}`, 80, 25);
+
+	if (hit > 0)
+	{
+		
+		clearInterval (InGameTimer);
+
+		gameOver = true;
+
+		if(startButton.overlap(mouse))
+		{
+			if(mouse.pressed)
+			{
+				SurvivalCount = 0;
+				hit = 0;
+
+				gameOver = false;
+
+				InGameTimer = setInterval(count, 1000);
+
+				//context.clearRect(0,0,canvas.width, canvas.height);	
+				//gameBackground.drawRect();
+
+				for(var i = 1; i < 6; i++)
+				{
+						platform[i].width = 200 + Math.random()*201;
+						platform[i].height = 50;
+						platform[i].x = 2500 + i*200;
+						platform[i].y = platform0.y - 200 - (Math.random()*401);
+						platform[i].color = "#66ff33";
+						platform[i].vx = -4;
+				}
+
+				lastx = 2500;
+				for(var i = 0; i < 8; i++)
+				{
+						junk[i].width = player.width/2 +Math.random()*50;
+						junk[i].height = player.height + Math.random()*150;
+						junk[i].x = lastx + Math.random()*1000;
+						junk[i].y = 700;
+						junk[i].vx = -4;
+						junk[i].color = "#faa70d";
+						lastx = junk[i].x;
+				}
+
+				for(var i = 0; i < 8; i++)
+				{
+						falljunk[i].width = player.width/2 + Math.random()*50;
+						falljunk[i].height = player.height + Math.random()*25;
+						falljunk[i].x = Math.random()*canvas.width;
+						falljunk[i].y = -100 - Math.random()*2000;
+						falljunk[i].vy = 1 + Math.random()*9;
+						falljunk[i].vx = (Math.random()*3)*-1;
+						falljunk[i].color = "#faa70d";
+				}
+
+				for(var i = 0; i < 4; i++)
+				{
+						bouncePad[i].width = player.width;
+						bouncePad[i].height = player.height/4;
+						bouncePad[i].x = 2500 + i*1000;
+						bouncePad[i].y = 700;	
+						bouncePad[i].color = "purple";
+						bouncePad[i].vx = -4;
+				}
+
+				for(var i = 1; i < platform.length; i++){
+
+				if (!gameOver) 
+				{
+					platform[i].move();
+				}
+				
+
+				platform[i].drawRect();
+			}
+
+			for(var i = 0; i < junk.length; i++){
+
+				if (!gameOver) 
+				{
+					junk[i].move();
+				}
+				junk[i].drawRect();
+
+			}
+
+			for(var i = 0; i < falljunk.length; i++){
+
+				if (!gameOver) 
+				{
+					falljunk[i].move();
+				}
+
+				falljunk[i].drawRect();
+
+			}
+
+			for(var i = 0; i < bouncePad.length; i++){
+
+				if (!gameOver) 
+				{
+					bouncePad[i].move();
+				}
+
+				bouncePad[i].drawRect();
+
+			}
+
+
+			
+			platform0.drawRect();
+			player.drawRect();
+
+			context.font = "16px Georgia";
+			context.color = "white";
+			context.fillText(`Timer:${SurvivalCount}`, 80, 25);
+			}
+
+			startButton.color = "blue";
+			
+
+		}
+		else
+		{
+			//Default Button Graphic
+			startButton.color = "red";
+		}
+		
+
+		if(menuButton.overlap(mouse))
+		{
+			if(mouse.pressed)
+			{
+				//Changes to the game state
+				mouse.pressed = false;
+				
+				changeStates("menu");
+			}
+
+			menuButton.color = "blue";
+			
+
+		}
+		else
+		{
+			//Default Button Graphic
+			menuButton.color = "red";
+		}
+
+		startButton.drawRect();
+    	menuButton.drawRect();
+
+		context.font = "100px Georgia";
+		context.fillText("Game Over", canvas.width/2 - 250, canvas.height/2 - 300);
+		context.font = "70px Georgia";
+		context.fillText(`Time:${SurvivalCount}`, canvas.width/2 - 150, canvas.height/2 - 200);
+		context.font = "50px Georgia";
+		context.fillText("Click here for the menu", canvas.width/2 - 270, canvas.height/2 + 140);
+
+		context.font = "50px Georgia";
+		context.fillText("Click here to play again", canvas.width/2 - 240, canvas.height/2 - 70);
+		// if(!gameOver){
+			// gameOver = true;
+		// }
+		//gameOver = true;
+	}
 }
 
 function animate()
