@@ -229,9 +229,9 @@ gameStates["instructions"] = function(){
 	context.fillText("appear in front of & above you.", canvas.width/2 - 400, canvas.height/2 - 90);
 
 	context.fillText("-As you continue you will pass by green", canvas.width/2 - 400, canvas.height/2 - 30);
-	context.fillText("platforms, jump on them to gain hight.", canvas.width/2 - 400, canvas.height/2 + 20);
+	context.fillText("platforms, jump on them to gain height.", canvas.width/2 - 400, canvas.height/2 + 20);
 
-	context.fillText("-The purple bounse pads will automatically", canvas.width/2 - 400, canvas.height/2 + 80);
+	context.fillText("-The purple bounce pads will automatically", canvas.width/2 - 400, canvas.height/2 + 80);
 	context.fillText(" bounce you up, be careful.", canvas.width/2 - 400, canvas.height/2 + 130);
 
 	context.font = "50px Georgia";
